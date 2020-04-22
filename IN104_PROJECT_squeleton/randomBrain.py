@@ -8,8 +8,7 @@ class RandomBrain:
     def play(self, gameState, timeLimit):
         possibleMoves = gameState.findPossibleMoves()
         n=len(possibleMoves)
-        gameState.display(showBoard=True)
-        a=random.randint(0,n)
+        a=random.randint(0,n-1)
         return possibleMoves[a]
 
     def __str__(self):
