@@ -12,6 +12,7 @@ timeLimit = 1 #The AI gave 1 second to play
 for module in [aiarena.abalone, aiarena.chess, aiarena.checkers, aiarena.connect4]:
     # TODO: ajouter le code pour lancer une partie et afficher son déroulement
     game = aiarena.Game(module, brain1, timeLimit, brain2, timeLimit)
+    game.start()
     # afficher le PGN en fin de partie
     print(game.pgn) #print the summary of the game.
     input('press enter to continue')
