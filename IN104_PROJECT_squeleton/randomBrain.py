@@ -2,7 +2,7 @@ import random
 
 class RandomBrain:
     def __init__(self):
-        self.name = OrdiRand
+        self.name = "OrdiRand"
         self.alwaysSeeAsWhite = False
 
     def play(self, gameState, timeLimit):
