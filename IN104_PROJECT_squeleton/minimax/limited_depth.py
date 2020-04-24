@@ -4,7 +4,7 @@ def minimax(node, maximize, get_children, evaluate, max_depth):
 	nouedsEnfant = get_children(node)
 	minmaxEnfant = []
 	for element in noeudsEnfant :
-		minmaxEnfant.append(minimax(element, not maximize, get_children, evaluate,max_depth-1)
+		minmaxEnfant.append(minimax(element, not maximize, get_children, evaluate,max_depth-1))
 	if (maximize) :
 		return max(minmaxEnfant)
 	return min(minmaxEnfant)
