@@ -8,6 +8,7 @@ def minimax(node, maximize, get_children, evaluate, max_depth):
 	for element in noeudsEnfant :
 		minmaxEnfant.append(minimax(element, not maximize, get_children, evaluate,max_depth-1))
 	if (maximize) :
+		print(miximize)
 		return max(minmaxEnfant)
 	return min(minmaxEnfant)
 		
