@@ -10,3 +10,5 @@ print(game.pgn) # display the game summary
 
 # TODO: Placer ici le code pour lancer une partie sur n'importe quel type de jeu entre deux humains 
 # à l'aide de aiarena.Game, aiarena.chess (par exemple) et aiarena.ManualBrain
+#Ceci est un commentaire
+
