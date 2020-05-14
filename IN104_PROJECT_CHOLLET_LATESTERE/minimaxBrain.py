@@ -17,16 +17,16 @@ class MinimaxBrain:
         self.evaluate = evaluations_functions[gameclass]
 
     def play(self, gameState, timeLimit):
-        moves=gameState.findPossibleMoves()
-        maxi=minimax(moves [0])
+        states=gameState.findNextStates()
+        maxi=minimax(states[0], True, self.get_children, self.evaluate, self.depth)
         nmaxi=0
         n=0
-        for element in moves:
-            if minimax(element)>maxi:
-                maxi=minimax(element)
+        for element in states:
+            if minimax(element, True, get_children, evaluate, self.depth)>maxi:
+                maxi=minimax(element, True, get_children, evaluate, self.depth)
                 nmaxi=n
             n=n+1
-        return moves[nmaxi]
+        return states[nmaxi]
 
 	
 
