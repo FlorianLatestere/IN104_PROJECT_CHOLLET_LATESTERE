@@ -1,7 +1,7 @@
 from aiarena.checkers import cell
 
 def evaluate(gameState):
-	score=0
+    score=0
     for i in range (8):
     	for j in range (8):
     		if gameState.getCell(i,j).type = checkers.cell.MAN:
