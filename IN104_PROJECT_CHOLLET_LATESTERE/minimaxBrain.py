@@ -12,7 +12,7 @@ evaluations_functions = {
 class MinimaxBrain:
 
     def __init__(self, gameclass, gameclass_arguments={}):
-        self.depth = 5      # Set the exploration depth here
+        self.depth = 4      # Set the exploration depth here
         self.get_children = gameclass.GameState.findNextStates
         self.evaluate = evaluations_functions[gameclass]
 
