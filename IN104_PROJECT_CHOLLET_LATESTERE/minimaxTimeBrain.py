@@ -20,7 +20,7 @@ def compute_research_time (GameState):
 class MinimaxBrain:
 
     def __init__(self, gameclass, gameclass_arguments={}):
-        self.T_limit = 4
+        self.T_limit = 2
         self.get_children = gameclass.GameState.findNextStates
         self.evaluate = evaluations_functions[gameclass]
 	tot=0

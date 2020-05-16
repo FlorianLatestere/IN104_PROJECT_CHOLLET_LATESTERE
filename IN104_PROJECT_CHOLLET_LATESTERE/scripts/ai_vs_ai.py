@@ -1,13 +1,13 @@
 # executez ce script dans un terminal (depuis n'importe quel repertoire)
 # avec la commande python -m IN104_PROJECT_NOM1_NOM2.scripts.human_vs_AI
 import aiarena
-from ..minimaxBrain import MinimaxBrain
+from ..minimaxTimeBrain import MinimaxBrain
 
-brain1 = MinimaxBrain(aiarena.connect4)
+brain1 = MinimaxBrain(aiarena.checkers)
 brain1.depth = 5
-brain2 = MinimaxBrain(aiarena.connect4)
+brain2 = MinimaxBrain(aiarena.checkers)
 brain2.depth = 5
-ai_time = 15 #the AI will only have 1 sec to play
+ai_time = 2 #the AI will only have 1 sec to play
 game = aiarena.Game(aiarena.connect4, brain1, ai_time, brain2, ai_time)
 game.displayLevel = 1   # this prints the board after each move
 game.start()
