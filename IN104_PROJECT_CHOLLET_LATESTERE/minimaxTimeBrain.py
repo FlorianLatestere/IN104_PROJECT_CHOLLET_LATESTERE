@@ -25,9 +25,9 @@ class MinimaxBrain:
         self.evaluate = evaluations_functions[gameclass]
         maxi=0
         for loop in range(50):
-		a=compute_research_time(gameclass.GameState())
-		if a>maxi:
-			maxi=a
+        	a=compute_research_time(gameclass.GameState())
+        	if a>maxi:
+        		maxi=a
         self.T_recherche= maxi
 	
 		
@@ -36,7 +36,6 @@ class MinimaxBrain:
         states=gameState.findNextStates()
         moves = gameState.findPossibleMoves()
         nmb = len(states)
-        print(nmb)
         maxi=minimax(states[0], True, self.get_children, self.evaluate, self.T_limit/nmb,self.T_recherche)
         nmaxi=0
         n=0
