@@ -25,23 +25,31 @@ class MinimaxBrain:
         self.evaluate = evaluations_functions[gameclass]
         tot=0
         for loop in range(10):
-        	tot=tot+compute_research_time(gameclass.GameState())
-        self.T_recherche=tot/10
+        	tot+=compute_research_time(gameclass.GameState())
+        self.T_recherche= tot/10
 	
 		
 
     def play(self, gameState, timeLimit):
         states=gameState.findNextStates()
         moves = gameState.findPossibleMoves()
-        maxi=minimax(states[0], True, self.get_children, self.evaluate, self.T_limit,self.T_recherche)
+        nmb = len(states)
+        print(nmb)
+        maxi=minimax(states[0], True, self.get_children, self.evaluate, self.T_limit/nmb,self.T_recherche)
         nmaxi=0
         n=0
-        for element in states:
-            if minimax(element, True, self.get_children, self.evaluate, self.T_limit,self.T_recherche)>maxi:
-                maxi=minimax(element, True, self.get_children, self.evaluate, self.T_limit,self.T_recherche)
-                nmaxi=n
-            n=n+1
+        for element in states[1:]:
+        	minim =minimax(element, True, self.get_children, self.evaluate, self.T_limit/nmb,self.T_recherche)
+        	if minim>maxi:
+        		maxi=minim
+        		nmaxi=n
+        	n=n+1
         return moves[nmaxi]
+            
+                
+                
+            
+        
 
 	
 
