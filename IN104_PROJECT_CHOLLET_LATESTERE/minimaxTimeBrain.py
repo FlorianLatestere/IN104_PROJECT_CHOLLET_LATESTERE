@@ -12,7 +12,7 @@ evaluations_functions = {
 
 def compute_research_time (GameState):
 	init=time.time()
-	findNextStates(GameState)
+	GameState.findNextStates()
 	return(time.time()-init)
 	
 
@@ -23,10 +23,11 @@ class MinimaxBrain:
         self.T_limit = 2
         self.get_children = gameclass.GameState.findNextStates
         self.evaluate = evaluations_functions[gameclass]
-	tot=0
-	for loop in range(10):
-		tot=tot+compute_research_time(gameclass.GameState())
-	self.T_recherche=tot/10
+        tot=0
+        for loop in range(10):
+        	tot=tot+compute_research_time(gameclass.GameState())
+        self.T_recherche=tot/10
+	
 		
 
     def play(self, gameState, timeLimit):
