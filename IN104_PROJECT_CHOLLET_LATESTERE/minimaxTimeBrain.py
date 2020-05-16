@@ -11,9 +11,9 @@ evaluations_functions = {
 }
 
 def compute_research_time (GameState):
-	init=time.time()
+	init=time.time_ns()
 	GameState.findNextStates()
-	return(time.time()-init)
+	return(time.time_ns()-init)
 	
 
 
