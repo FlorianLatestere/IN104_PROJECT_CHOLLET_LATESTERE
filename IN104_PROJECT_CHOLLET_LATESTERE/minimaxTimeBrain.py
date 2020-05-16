@@ -33,12 +33,12 @@ class MinimaxBrain:
     def play(self, gameState, timeLimit):
         states=gameState.findNextStates()
         moves = gameState.findPossibleMoves()
-        maxi=minimax(states[0], True, self.get_children, self.evaluate, self.T_limit)
+        maxi=minimax(states[0], True, self.get_children, self.evaluate, self.T_limit,self.T_recherche)
         nmaxi=0
         n=0
         for element in states:
-            if minimax(element, True, self.get_children, self.evaluate, self.T_limit)>maxi:
-                maxi=minimax(element, True, self.get_children, self.evaluate, self.T_limit)
+            if minimax(element, True, self.get_children, self.evaluate, self.T_limit,self.T_recherche)>maxi:
+                maxi=minimax(element, True, self.get_children, self.evaluate, self.T_limit,self.T_recherche)
                 nmaxi=n
             n=n+1
         return moves[nmaxi]
