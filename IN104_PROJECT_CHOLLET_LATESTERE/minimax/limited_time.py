@@ -8,8 +8,9 @@ def minimax(node, maximize, get_children, evaluate, T_limit,T_recherche):
 		return evaluate(node)
 
 	minmaxEnfant = []
+	nmbEnfants = len(noeudsEnfant)
 	for element in noeudsEnfant :
-		minmaxEnfant.append(minimax(element, not maximize, get_children, evaluate,T_limit/len(noeudsEnfant),T_recherche)
+		minmaxEnfant.append(minimax(element, not maximize, get_children, evaluate,T_limit/nmbEnfant,T_recherche)
 
 	if (maximize) :
 		return max(minmaxEnfant)
