@@ -9,7 +9,7 @@ evaluations_functions = {
     aiarena.connect4: connect4.evaluate
 }
 
-class MinimaxBrain:
+class MinimaxTimeBrain:
 
     def __init__(self, gameclass, gameclass_arguments={}):
         self.T_limit = 4      # Set the exploration depth here
