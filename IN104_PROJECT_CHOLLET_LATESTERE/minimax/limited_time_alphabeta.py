@@ -10,7 +10,7 @@ def minimax(node, maximize, get_children, evaluate,T_limit,T_recherche,alpha=-10
 	minmaxEnfant = []
 	nmbEnfants = len(noeudsEnfant)
 	for element in noeudsEnfant :
-		mimaElement = minimax(element, not maximize, get_children, evaluate,T_limit/nmbEnfant,T_recherche,alpha,beta)
+		mimaElement = minimax(element, not maximize, get_children, evaluate,T_limit/nmbEnfants,T_recherche,alpha,beta)
 
 		if maximize and mimaElement >=beta:
 			return mimaElement
