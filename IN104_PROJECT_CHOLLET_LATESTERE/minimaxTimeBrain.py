@@ -23,10 +23,12 @@ class MinimaxBrain:
         self.T_limit = 2
         self.get_children = gameclass.GameState.findNextStates
         self.evaluate = evaluations_functions[gameclass]
-        tot=0
-        for loop in range(10):
-        	tot+=compute_research_time(gameclass.GameState())
-        self.T_recherche= tot/10
+        maxi=0
+        for loop in range(50):
+		a=compute_research_time(gameclass.GameState())
+		if a>maxi:
+			maxi=a
+        self.T_recherche= maxi
 	
 		
 
