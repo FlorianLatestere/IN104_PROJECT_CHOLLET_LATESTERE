@@ -2,26 +2,35 @@ from aiarena.connect4 import cell
 import math as m
 
 def evaluate(gs):
-	PiontsAlignes = [0,0,0,0]
-	nmbPionts = 0
+	#On va regarder sur le plateau qui a l'avantage sur les suites de pions de 1,2,3 et 4+ pions
+	pionsAlignes = [0,0,0,0] 
+	nmbpions = 0
 	for j in range(7) :
 		for i in range(6):
+			#A chaque fois qu'on trouve un pion, on regarde s'il est aligné avec d'autres pions dans les 4 directions possibles (ligne, colonne, 2 diagonales)
 			if (gs.getCell(i,j).color != cell.NONE) :
-				mult = 2* (gs.getCell(i,j).color == cell.WHITE) -1
-				nmbPionts += 1
-				Val = checkHoriz(gs,i,j)
-				PiontsAlignes[Val-1] += mult
+			
+				#vaut 1 si pion noir, -1 si blanc
+				plus_ou_moins = 2* (gs.getCell(i,j).color == cell.WHITE) -1
+				nmbpions += 1
+				
+				#Val correspond à la plus longue suite de pions trouvé à partir du pion en (i,j) dans une direction
+				Val = checkHoriz(gs,i,j) 
+				pionsAlignes[Val-1] += plus_ou_moins
 				Val = checkVert(gs,i,j)
-				PiontsAlignes[Val-1] += mult
+				pionsAlignes[Val-1] += plus_ou_moins
 				Val = checkD1(gs,i,j)
-				PiontsAlignes[Val-1] += mult
+				pionsAlignes[Val-1] += plus_ou_moins
 				Val = checkD2(gs,i,j)
-				PiontsAlignes[Val-1] += mult
-	if PiontsAlignes[3] != 0:
-		#print(PiontsAlignes[3]/abs(PiontsAlignes[3]) * 10000000 / (nmbPionts**2))
-		return PiontsAlignes[3]/abs(PiontsAlignes[3]) * 10000000 / (nmbPionts**2)
+				pionsAlignes[Val-1] += plus_ou_moins
+				
+	#si il y a un puissance 4 possible, on va lui donner plein de points, mais ce en fonction du nombre de coups qu'il faut jouer pour y arriver (privilegier les puissances 4/contres immédiats)
+	if pionsAlignes[3] != 0:
+		return pionsAlignes[3]/abs(pionsAlignes[3]) * 10000000 / (nmbpions**2)
+		
+	#sinon on donne des points en fonction du nombre de pions alignés
 	else :
-		return PiontsAlignes[0] * 1 + PiontsAlignes[1] * 5 + PiontsAlignes[2] * 10
+		return pionsAlignes[0] * 1 + pionsAlignes[1] * 5 + pionsAlignes[2] * 10
 
 
 
@@ -30,10 +39,12 @@ def evaluate(gs):
 def checkHoriz(gs,i,j):
 	a, b = i, j
 	compteur = 1
+	#On regarde jusqu'où on peut aller vers la gauche en trouvant des pions de la même couleur
 	while b>0 and gs.getCell(a,b-1).color == gs.getCell(i,j).color:
 		b -=1
 		compteur +=1
 	b = j
+	#Puis de même vers la droite
 	while b<6 and gs.getCell(a,b+1).color == gs.getCell(i,j).color:
 		b+=1
 		compteur +=1

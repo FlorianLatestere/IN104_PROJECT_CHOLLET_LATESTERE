@@ -10,6 +10,7 @@ evaluations_functions = {
     aiarena.connect4: connect4.evaluate
 }
 
+#definition de la fonction qui va calculer T_recherche pour l'IA
 def compute_research_time (GameState, evaluate):
 	init=time.time()
 	A = GameState.findNextStates()
@@ -23,6 +24,8 @@ class MinimaxBrain:
         self.T_limit = 2
         self.get_children = gameclass.GameState.findNextStates
         self.evaluate = evaluations_functions[gameclass]
+        
+        #On va prendre le maximum de 50 T_recherche afin de s'assurer que l'on ne dépasse jamais la limite de temps impartie 
         maxi=0
         for loop in range(50):
         	a=compute_research_time(gameclass.GameState(), self.evaluate)
@@ -34,18 +37,27 @@ class MinimaxBrain:
 
     def play(self, gameState, timeLimit):
     	tac = time.time()
+    	
     	states=gameState.findNextStates()
     	moves = gameState.findPossibleMoves()
+    	
+    	#Nombre d'enfants
     	nmb = len(states)
+    	
     	toc = time.time()
+    	
+    	#Temps à donner aux enfants
     	T_limit_enfants = (self.T_limit + tac - toc)
+    	
     	tic = time.time()
     	maxi=minimax(states[0], False, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
     	tuc = time.time()
+    	
     	N = 1
     	nmaxi=0
     	n=1
     	for element in states[1:]:
+    		#On met à jour T_limit en fonction du temps pris par la recherche precedente pour donner plus de temps aux recherches suivantes
     		T_limit_enfants += ((T_limit_enfants)/(nmb) - (tuc - tic))*nmb/(nmb-N)
     		
     		tic = time.time()
