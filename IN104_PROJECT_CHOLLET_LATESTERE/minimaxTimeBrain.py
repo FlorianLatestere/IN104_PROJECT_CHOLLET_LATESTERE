@@ -1,7 +1,7 @@
 import aiarena
 import time
 # changer l'import ci-dessous pour changer la version de minimax utilisée
-from .minimax.limited_time_alphabeta import minimax
+from .minimax.limited_time import minimax
 from .evaluation_functions import connect4, checkers
 
 # definition d'un dictionaire qui associe à chaque jeu une fonction d'évaluation
