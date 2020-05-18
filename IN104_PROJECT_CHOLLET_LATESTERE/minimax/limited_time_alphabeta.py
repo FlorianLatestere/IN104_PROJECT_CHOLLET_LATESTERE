@@ -1,5 +1,6 @@
 import time
-def minimax(node, maximize, get_children, evaluate,T_limit,T_recherche,alpha=-10**99, beta=10**99):
+import math as m
+def minimax(node, maximize, get_children, evaluate,T_limit,T_recherche,alpha=-m.inf, beta=m.inf):
 	tic=time.time()
 
 	if (T_recherche > T_limit):
@@ -12,8 +13,11 @@ def minimax(node, maximize, get_children, evaluate,T_limit,T_recherche,alpha=-10
 	minmaxEnfant = []
 	nmbEnfants = len(noeudsEnfant)
 	tac = time.time()
+	T_limit_enfants = (T_limit + tic - tac)
+	n = 0 
 	for element in noeudsEnfant :
-		mimaElement = minimax(element, not maximize, get_children, evaluate,((T_limit+tic-tac)/nmbEnfants),T_recherche,alpha,beta)
+		toc = time.time()
+		mimaElement = minimax(element, not maximize, get_children, evaluate,(T_limit_enfants/nmbEnfants),T_recherche,alpha,beta)
 
 		if maximize and mimaElement >=beta:
 			return mimaElement
@@ -25,6 +29,10 @@ def minimax(node, maximize, get_children, evaluate,T_limit,T_recherche,alpha=-10
 		elif maximize and mimaElement > alpha:
 			alpha = mimaElement
 		minmaxEnfant.append(mimaElement)
+		n += 1
+		tuc = time.time()
+		if nmbEnfants-n != 0 :
+			T_limit_enfants += ((T_limit_enfants)/(nmbEnfants) - (tuc - toc))*nmbEnfants/(nmbEnfants-n)
 
 	if (maximize) :
 		return max(minmaxEnfant)
