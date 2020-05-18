@@ -1,7 +1,7 @@
 import aiarena
 import time
 # changer l'import ci-dessous pour changer la version de minimax utilisée
-from .minimax.limited_time import minimax
+from .minimax.limited_time_alphabeta import minimax
 from .evaluation_functions import connect4, checkers
 
 # definition d'un dictionaire qui associe à chaque jeu une fonction d'évaluation
@@ -20,7 +20,7 @@ def compute_research_time (GameState):
 class MinimaxBrain:
 
     def __init__(self, gameclass, gameclass_arguments={}):
-        self.T_limit = 20
+        self.T_limit = 0.5
         self.get_children = gameclass.GameState.findNextStates
         self.evaluate = evaluations_functions[gameclass]
         maxi=0
@@ -33,30 +33,27 @@ class MinimaxBrain:
 		
 
     def play(self, gameState, timeLimit):
-    
-        states=gameState.findNextStates()
-        tac = time.time()
-        moves = gameState.findPossibleMoves()
-        nmb = len(states)
-        print(self.T_limit, self.T_recherche)
-        maxi=minimax(states[0], True, self.get_children, self.evaluate, self.T_limit/nmb,self.T_recherche)
-        nmaxi=0
-        n=0
-        for element in states[1:]:
-        	minim =minimax(element, True, self.get_children, self.evaluate, self.T_limit/nmb,self.T_recherche)
-        	if minim>maxi:
-        		maxi=minim
-        		nmaxi=n
-        	n=n+1
-        print(time.time() - tac)
-        return moves[nmaxi]
-            
-                
-                
-            
+    	tac = time.time()
+    	states=gameState.findNextStates()
+    	moves = gameState.findPossibleMoves()
+    	nmb = len(states)
+    	print(self.T_limit, self.T_recherche)
+    	toc = time.time()
+    	maxi=minimax(states[0], False, self.get_children, self.evaluate, (self.T_limit + toc - tac)/nmb,self.T_recherche)
+    	nmaxi=0
+    	n=0
+    	for element in states[1:]:
+    		minim =minimax(element, False, self.get_children, self.evaluate, (self.T_limit+ toc - tac)/nmb,self.T_recherche)
+    		if minim>maxi:
+    			maxi=minim
+    			nmaxi=n
+    		n=n+1
+    	print(time.time() - tac)
+    	return moves[nmaxi]
         
-
 	
+        
+            
 
     def __str__(self):
         return "MiniMax_Player"

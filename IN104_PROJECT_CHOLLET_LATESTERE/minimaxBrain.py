@@ -23,8 +23,9 @@ class MinimaxBrain:
         nmaxi=0
         n=0
         for element in states:
-            if minimax(element, True, self.get_children, self.evaluate, self.depth)>maxi:
-                maxi=minimax(element, True, self.get_children, self.evaluate, self.depth)
+		maxiElement = minimax(element, True, self.get_children, self.evaluate, self.depth)
+            if maxiElement >maxi:
+                maxi=maxiElement
                 nmaxi=n
             n=n+1
         return moves[nmaxi]
