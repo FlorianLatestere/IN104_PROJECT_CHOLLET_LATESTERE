@@ -1,12 +1,12 @@
-def minimax(node, maximize, get_children, evaluate, max_depth,dico):
+def minimax(node, maximize, get_children, evaluate, max_depth,dico={}):
 
 	if (max_depth == 0):
-		strnode=toString(node)
-		if dico.has_key[strnode]:
+		strnode=str(node)
+		if strnode in dico.keys():
 			return dico[strnode]
 		else:
 			dico[strnode]=evaluate(node)
-			return dico.get[strnode]
+			return dico[strnode]
 
 	noeudsEnfant = get_children(node)
 	if len(noeudsEnfant) == 0 :

@@ -26,7 +26,7 @@ def evaluate(gs):
 				
 	#si il y a un puissance 4 possible, on va lui donner plein de points, mais ce en fonction du nombre de coups qu'il faut jouer pour y arriver (privilegier les puissances 4/contres immédiats)
 	if pionsAlignes[3] != 0:
-		return pionsAlignes[3]/abs(pionsAlignes[3]) * 10000000 / (nmbpions**2)
+		return pionsAlignes[3]/abs(pionsAlignes[3]) * 10000000 / (nmbpions)
 		
 	#sinon on donne des points en fonction du nombre de pions alignés
 	else :

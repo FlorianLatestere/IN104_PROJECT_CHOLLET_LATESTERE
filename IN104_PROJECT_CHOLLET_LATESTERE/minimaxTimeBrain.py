@@ -1,7 +1,7 @@
 import aiarena
 import time
 # changer l'import ci-dessous pour changer la version de minimax utilisée
-from .minimax.limited_time_alphabeta import minimax
+from .minimax.limited_time_alphabeta_tt import minimax
 from .evaluation_functions import connect4, checkers
 
 # definition d'un dictionaire qui associe à chaque jeu une fonction d'évaluation
@@ -11,9 +11,9 @@ evaluations_functions = {
 }
 
 #definition de la fonction qui va calculer T_recherche pour l'IA
-def compute_research_time (GameState, evaluate):
+def compute_research_time (GameState):
 	init=time.time()
-	A = GameState.findNextStates()
+	GameState.findNextStates()
 	return(time.time()-init)
 	
 
@@ -28,7 +28,7 @@ class MinimaxBrain:
         #On va prendre le maximum de 50 T_recherche afin de s'assurer que l'on ne dépasse jamais la limite de temps impartie 
         maxi=0
         for loop in range(50):
-        	a=compute_research_time(gameclass.GameState(), self.evaluate)
+        	a=compute_research_time(gameclass.GameState())
         	if a>maxi:
         		maxi=a
         self.T_recherche= maxi
