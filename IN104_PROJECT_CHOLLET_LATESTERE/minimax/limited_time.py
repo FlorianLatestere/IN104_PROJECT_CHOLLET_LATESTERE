@@ -17,9 +17,10 @@ def minimax(node, maximize, get_children, evaluate, T_limit,T_recherche):
 	for element in noeudsEnfant :
 		toc = time.time()
 		minmaxEnfant.append(minimax(element, not maximize, get_children, evaluate,(T_limit_enfants/nmbEnfants),T_recherche))
+		n += 1
 		tuc = time.time()
 		T_limit_enfants = ((T_limit_enfants)/(nmbEnfants) - (tuc - toc))*nmbEnfants/(nmbEnfants-n)
-		n += 1
+		
 		
 	if (maximize) :
 		return max(minmaxEnfant)

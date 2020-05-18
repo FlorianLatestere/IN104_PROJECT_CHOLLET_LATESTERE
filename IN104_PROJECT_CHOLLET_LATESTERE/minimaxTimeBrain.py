@@ -20,7 +20,7 @@ def compute_research_time (GameState):
 class MinimaxBrain:
 
     def __init__(self, gameclass, gameclass_arguments={}):
-        self.T_limit = 1 * 0.7
+        self.T_limit = 1
         self.get_children = gameclass.GameState.findNextStates
         self.evaluate = evaluations_functions[gameclass]
         maxi=0
@@ -39,15 +39,23 @@ class MinimaxBrain:
     	nmb = len(states)
     	print(self.T_limit, self.T_recherche)
     	toc = time.time()
-    	maxi=minimax(states[0], False, self.get_children, self.evaluate, (self.T_limit + toc - tac)/nmb,self.T_recherche)
+    	T_limit_enfants = (self.T_limit + tac - toc)
+    	tic = time.time()
+    	maxi=minimax(states[0], False, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
+    	tuc = time.time()
+    	N = 1
     	nmaxi=0
     	n=0
     	for element in states[1:]:
-    		minim =minimax(element, False, self.get_children, self.evaluate, (self.T_limit+ toc - tac)/nmb,self.T_recherche)
+    		T_limit_enfants = ((T_limit_enfants)/(nmb) - (tuc - tic))*nmb/(nmb-N)
+    		tic = time.time()
+    		minim =minimax(element, False, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
     		if minim>maxi:
     			maxi=minim
     			nmaxi=n
     		n=n+1
+    		N = N+1
+    		tuc = time.time()
     	print(time.time() - tac)
     	return moves[nmaxi]
         
