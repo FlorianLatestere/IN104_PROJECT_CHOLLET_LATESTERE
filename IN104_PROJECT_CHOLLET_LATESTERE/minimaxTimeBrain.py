@@ -1,7 +1,7 @@
 import aiarena
 import time
 # changer l'import ci-dessous pour changer la version de minimax utilisée
-from .minimax.limited_time_alphabeta import minimax
+from .minimax.limited_time import minimax
 from .evaluation_functions import connect4, checkers
 
 # definition d'un dictionaire qui associe à chaque jeu une fonction d'évaluation
@@ -40,7 +40,7 @@ class MinimaxBrain:
     	toc = time.time()
     	T_limit_enfants = (self.T_limit + tac - toc)
     	tic = time.time()
-    	maxi=minimax(states[0], False, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
+    	maxi=minimax(states[0], True, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
     	tuc = time.time()
     	N = 1
     	nmaxi=0
@@ -49,7 +49,8 @@ class MinimaxBrain:
     		T_limit_enfants += ((T_limit_enfants)/(nmb) - (tuc - tic))*nmb/(nmb-N)
     		
     		tic = time.time()
-    		minim =minimax(element, False, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
+    		minim =minimax(element, True, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
+    		print(minim)
     		if minim>maxi:
     			maxi=minim
     			nmaxi=n

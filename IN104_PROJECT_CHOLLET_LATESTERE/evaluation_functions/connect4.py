@@ -2,15 +2,26 @@ from aiarena.connect4 import cell
 import math as m
 
 def evaluate(gs):
-	score = 0
+	PiontsAlignes = [0,0,0,0]
+	nmbPionts = 0
 	for j in range(7) :
 		for i in range(6):
 			if (gs.getCell(i,j).color != cell.NONE) :
-				score += checkHoriz(gs,i,j)
-				score += checkVert(gs,i,j)
-				score += checkD1(gs,i,j)
-				score += checkD2(gs,i,j)
-	return score
+				mult = 2* (gs.getCell(i,j).color == cell.WHITE) -1
+				nmbPionts += 1
+				Val = checkHoriz(gs,i,j)
+				PiontsAlignes[Val-1] += mult
+				Val = checkVert(gs,i,j)
+				PiontsAlignes[Val-1] += mult
+				Val = checkD1(gs,i,j)
+				PiontsAlignes[Val-1] += mult
+				Val = checkD2(gs,i,j)
+				PiontsAlignes[Val-1] += mult
+	if PiontsAlignes[3] != 0:
+		#print(PiontsAlignes[3]/abs(PiontsAlignes[3]) * 10000000 / (nmbPionts**2))
+		return PiontsAlignes[3]/abs(PiontsAlignes[3]) * 10000000 / (nmbPionts**2)
+	else :
+		return PiontsAlignes[0] * 1 + PiontsAlignes[1] * 5 + PiontsAlignes[2] * 10
 
 
 
@@ -18,9 +29,7 @@ def evaluate(gs):
 
 def checkHoriz(gs,i,j):
 	a, b = i, j
-	score = 0
 	compteur = 1
-	mult = 2* (gs.getCell(i,j).color == cell.WHITE) -1	
 	while b>0 and gs.getCell(a,b-1).color == gs.getCell(i,j).color:
 		b -=1
 		compteur +=1
@@ -29,18 +38,12 @@ def checkHoriz(gs,i,j):
 		b+=1
 		compteur +=1
 	if compteur >= 4:
-		return mult*m.inf
-	if b<6 and gs.getCell(a,b+1).color == cell.NONE:
-		score +=100 * (compteur**4)*mult
-	if b>compteur-1 and gs.getCell(a,b-compteur).color == cell.NONE:
-		score +=100*(compteur**4)*mult 	
-	return score
+		return 4	
+	return compteur
 
 def checkVert(gs,i,j):
 	a, b = i, j
-	score = 0
 	compteur = 1
-	mult = 2* (gs.getCell(i,j).color == cell.WHITE) -1	
 	while a>0 and gs.getCell(a-1,b).color == gs.getCell(i,j).color:
 		a -=1
 		compteur +=1
@@ -49,18 +52,12 @@ def checkVert(gs,i,j):
 		a+=1
 		compteur +=1
 	if compteur >= 4:
-		return mult*m.inf
-	if a<5 and gs.getCell(a+1,b).color == cell.NONE:
-		score +=100 * (compteur**4)*mult
-	if a>compteur-1 and gs.getCell(a-compteur,b).color == cell.NONE:
-		score +=100*(compteur**4)*mult 	
-	return score
+		return 4
+	return compteur
 
 def checkD1(gs,i,j):
 	a, b = i, j
-	score = 0
-	compteur = 1
-	mult = 2* (gs.getCell(i,j).color == cell.WHITE) -1	
+	compteur = 1	
 	while a>0 and b>0 and gs.getCell(a-1,b-1).color == gs.getCell(i,j).color:
 		a -=1
 		b -=1
@@ -71,19 +68,13 @@ def checkD1(gs,i,j):
 		b+=1
 		compteur +=1
 	if compteur >= 4:
-		return mult*m.inf
-	if a<5 and b<6 and gs.getCell(a+1,b+1).color == cell.NONE:
-		score +=100 * (compteur**4)*mult
-	if a>compteur-1 and b>compteur-1 and gs.getCell(a-compteur,b-compteur).color == cell.NONE:
-		score +=100*(compteur**4)*mult 	
-	return score
+		return 4	
+	return compteur
 
 
 def checkD2(gs,i,j):
 	a, b = i, j
-	score = 0
 	compteur = 1
-	mult = 2* (gs.getCell(i,j).color == cell.WHITE) -1	
 	while a<5 and b>0 and gs.getCell(a+1,b-1).color == gs.getCell(i,j).color:
 		a +=1
 		b -=1
@@ -94,13 +85,8 @@ def checkD2(gs,i,j):
 		b+=1
 		compteur +=1
 	if compteur >= 4:
-		return mult*m.inf
-	if a+compteur<6 and b>compteur-1 and gs.getCell(a+1,b-compteur).color == cell.NONE:
-		score +=100 * (compteur**4)*mult
-	if a>0 and b<6 and gs.getCell(a-1,b+1).color == cell.NONE:
-		score +=100*(compteur**4)*mult 	
-	return score
-
+		return 4
+	return compteur
 
 
 

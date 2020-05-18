@@ -4,10 +4,10 @@ import aiarena
 from ..minimaxBrain import MinimaxBrain
 
 brain1 = aiarena.ManualBrain()
-human_time = 20 #the human will have 10 secs to play
+human_time = 30 #the human will have 10 secs to play
 brain2 = MinimaxBrain(aiarena.connect4)
 brain2.depth = 1
-ai_time = 15 #the AI will only have 1 sec to play
+ai_time = 2 #the AI will only have 1 sec to play
 game = aiarena.Game(aiarena.connect4, brain2, ai_time, brain1, human_time)
 game.displayLevel = 1   # this prints the board after each move
 game.start()
