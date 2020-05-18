@@ -7,7 +7,7 @@ brain1 = MinimaxBrain(aiarena.checkers)
 brain1.depth = 5
 brain2 = MinimaxBrain(aiarena.checkers)
 brain2.depth = 5
-ai_time = 0.5 #the AI will only have 1 sec to play
+ai_time = 1 #the AI will only have 1 sec to play
 game = aiarena.Game(aiarena.checkers, brain1, ai_time, brain2, ai_time)
 game.displayLevel = 1   # this prints the board after each move
 game.start()
