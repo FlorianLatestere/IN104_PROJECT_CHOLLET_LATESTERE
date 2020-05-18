@@ -1,7 +1,7 @@
 # executez ce script dans un terminal (depuis n'importe quel repertoire)
 # avec la commande python -m IN104_PROJECT_NOM1_NOM2.scripts.human_vs_AI
 import aiarena
-from ..minimaxBrain import MinimaxBrain
+from ..minimaxTimeBrain import MinimaxBrain
 
 brain1 = aiarena.ManualBrain()
 human_time = 30 #the human will have 10 secs to play

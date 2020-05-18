@@ -146,7 +146,7 @@ def get_children(node):
 
 def test(root, solution):
     ''' Test si minimax appliqué à root renvoie bien la solution '''
-    result = minimax(root, root.maximizing, get_children, evaluate, float('inf'))
+    result = minimax(root, root.maximizing, get_children, evaluate, 100, 0.0000001)
     if not result == solution:
         print(str.format("Error lors du test (maximize = {:b}) sur l'arbre : ", root.maximizing))
         print(root.display())
@@ -157,7 +157,7 @@ def test(root, solution):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('version', nargs='?', default='limited_depth_alphabeta')
+    parser.add_argument('version', nargs='?', default='limited_time')
     parser.add_argument('-n', '--ntests', type=int, default=100,
                         help='nombre de tests effectués sur des arbres aléatoirement générés')
     args = parser.parse_args()    

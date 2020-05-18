@@ -40,17 +40,16 @@ class MinimaxBrain:
     	toc = time.time()
     	T_limit_enfants = (self.T_limit + tac - toc)
     	tic = time.time()
-    	maxi=minimax(states[0], True, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
+    	maxi=minimax(states[0], False, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
     	tuc = time.time()
     	N = 1
     	nmaxi=0
-    	n=0
+    	n=1
     	for element in states[1:]:
     		T_limit_enfants += ((T_limit_enfants)/(nmb) - (tuc - tic))*nmb/(nmb-N)
     		
     		tic = time.time()
-    		minim =minimax(element, True, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
-    		print(minim)
+    		minim =minimax(element, False, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
     		if minim>maxi:
     			maxi=minim
     			nmaxi=n
