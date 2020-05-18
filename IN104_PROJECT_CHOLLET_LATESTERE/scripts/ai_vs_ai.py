@@ -2,11 +2,10 @@
 # avec la commande python -m IN104_PROJECT_NOM1_NOM2.scripts.human_vs_AI
 import aiarena
 from ..minimaxTimeBrain import MinimaxBrain
-from ..randomBrain import RandomBrain
 
 brain1 = MinimaxBrain(aiarena.connect4)
 brain1.depth = 5
-brain2 = RandomBrain()
+brain2 = MinimaxBrain(aiarena.connect4)
 brain2.depth = 5
 ai_time = 2 #the AI will only have 1 sec to play
 game = aiarena.Game(aiarena.connect4, brain1, ai_time, brain2, ai_time)

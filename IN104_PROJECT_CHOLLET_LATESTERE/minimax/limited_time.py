@@ -9,7 +9,7 @@ def minimax(node, maximize, get_children, evaluate, T_limit,T_recherche):
 
 	#Si il n'y a plus de coup possibles après, on evalue le noeud actuel
 	nmbEnfants = len(noeudsEnfant)	
-	if len(nmbEnfants) == 0 :
+	if lnmbEnfants == 0 :
 		return evaluate(node)
 	
 	#On initialise la liste prenant les valeurs des noeuds des enfants
