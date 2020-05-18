@@ -10,9 +10,10 @@ evaluations_functions = {
     aiarena.connect4: connect4.evaluate
 }
 
-def compute_research_time (GameState):
+def compute_research_time (GameState, evaluate):
 	init=time.time()
-	GameState.findNextStates()
+	A = GameState.findNextStates()
+	evaluate(aiarena.checkers.GameState())
 	return(time.time()-init)
 	
 
@@ -20,12 +21,12 @@ def compute_research_time (GameState):
 class MinimaxBrain:
 
     def __init__(self, gameclass, gameclass_arguments={}):
-        self.T_limit = 1
+        self.T_limit = 0.5
         self.get_children = gameclass.GameState.findNextStates
         self.evaluate = evaluations_functions[gameclass]
         maxi=0
         for loop in range(50):
-        	a=compute_research_time(gameclass.GameState())
+        	a=compute_research_time(gameclass.GameState(), self.evaluate)
         	if a>maxi:
         		maxi=a
         self.T_recherche= maxi
@@ -48,6 +49,7 @@ class MinimaxBrain:
     	n=0
     	for element in states[1:]:
     		T_limit_enfants = ((T_limit_enfants)/(nmb) - (tuc - tic))*nmb/(nmb-N)
+    		
     		tic = time.time()
     		minim =minimax(element, False, self.get_children, self.evaluate, T_limit_enfants/nmb,self.T_recherche)
     		if minim>maxi:
