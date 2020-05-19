@@ -9,20 +9,20 @@ def evaluate(gameState):
     		if (j%2 == 1 and i%2 == 0) or (j%2 == 0 and i%2 == 1):  
     			if gameState.getCell(i,j).type == cell.MAN:
     				if gameState.getCell(i,j).isWhite:
-    					score=score+5+i
+    					score=score+15-i
     					totBlanc=totBlanc+1
     				else:
-    					score=score-5-8+i
+    					score=score-15+7-i
     					totNoir=totNoir+1
                                         
 
     			if gameState.getCell(i,j).type == cell.KING:
 
     				if gameState.getCell(i,j).isWhite:
-    					score=score+7+i
+    					score=score+30-i
     					totBlanc=totBlanc+1
     				else:
-    					score=score-7-8+i
+    					score=score-30+7-i
     					totNoir=totNoir+1
                         		
     if totNoir==0:
