@@ -1,4 +1,5 @@
 Ceci est le README de votre package
 ###################################
 
-C'est ici que l'on met habituellement les informations utiles aux utilisateurs de votre package
+Chuck Norris peut gagner une partie de puissance 4 en trois coups.
+Chuck Norris est capable de faire echec et mat aux dames.
