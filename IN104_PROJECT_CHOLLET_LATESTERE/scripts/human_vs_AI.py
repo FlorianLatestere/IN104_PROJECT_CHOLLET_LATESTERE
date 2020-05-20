@@ -11,6 +11,7 @@ ai_time = 2 #the AI will only have 1 sec to play
 game = aiarena.Game(aiarena.connect4, brain2, ai_time, brain1, human_time)
 game.displayLevel = 1   # this prints the board after each move
 game.start()
+print(game.status)
 print(game.pgn) #print the summary of the game. 
 
 # Lancer une partie entre votre IA MinimaxBrain et un humain sur le puissance4 ou aux dames

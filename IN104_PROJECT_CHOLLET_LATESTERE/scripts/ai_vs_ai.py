@@ -3,6 +3,7 @@
 import aiarena
 from ..minimaxTimeBrain import MinimaxBrain
 
+
 brain1 = MinimaxBrain(aiarena.connect4)
 brain1.depth = 5
 brain2 = MinimaxBrain(aiarena.connect4)
