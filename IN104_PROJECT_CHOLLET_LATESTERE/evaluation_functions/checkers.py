@@ -19,10 +19,10 @@ def evaluate(gameState):
     			if gameState.getCell(i,j).type == cell.KING:
 
     				if gameState.getCell(i,j).isWhite:
-    					score=score+30-i
+    					score=score+30
     					totBlanc=totBlanc+1
     				else:
-    					score=score-30+7-i
+    					score=score-30
     					totNoir=totNoir+1
                         		
     if totNoir==0:
@@ -31,8 +31,4 @@ def evaluate(gameState):
         score=score-1000
     return (score)
 
-###
-#def val_case(i,j):
-#    val=[[0,100,0,100,0,100,0,80],[50,0,70,0,70,0,70,0],[0,25,0,25,0,25,0,40],[25,0,10,0,10,0,10,0],[0,10,0,10,0,10,0,25],[40,0,25,0,25,0,25,0],[0,70,0,70,0,70,0,50],[80,0,100,0,100,0,100,0]]
-#    return (val[i][j])
-###
+
